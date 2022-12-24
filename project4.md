@@ -171,7 +171,8 @@ In the resource-based method, load balancers distribute traffic by analyzing the
 
     sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
 
-    curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+    curl -fsSL https://deb.nodesource.com/setup_19.x | sudo -E bash - 
+
 
 > Install nodejs
 
@@ -181,11 +182,15 @@ In the resource-based method, load balancers distribute traffic by analyzing the
 
 > Adding a key 
 
-    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+    wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc |  gpg --dearmor | sudo tee /usr/share/keyrings/mongodb.gpg > /dev/null
+
+> Create a list file for MongoDB
+
+    echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 
 > Updating repository
-
-    echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
+  
+    sudo apt update
 
 > Install mongoDB
 
