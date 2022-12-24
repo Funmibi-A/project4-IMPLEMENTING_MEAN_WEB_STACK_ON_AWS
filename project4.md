@@ -165,7 +165,7 @@ In the resource-based method, load balancers distribute traffic by analyzing the
 
 > Upgrade ubuntu
 
-    sudo apt upgrade
+    sudo apt upgrade -y
 
 > Add certificates
 
@@ -188,29 +188,27 @@ In the resource-based method, load balancers distribute traffic by analyzing the
 
     echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 
-> Updating repository
-  
-    sudo apt update
-
 > Install mongoDB
 
-    sudo apt install -y mongodb
+    sudo apt install -y mongodb-org
+
+![mongodb](./images/mongodb.jpg)
 
 > Start the server
 
-    sudo service mongodb start
+    sudo service mongod start
 
 > Verify that the server is up and running
   
-    sudo systemctl status mongodb
+    sudo systemctl status mongod
+
+![db_status](./images/db_status.jpg)
   
 > Install npm – Node package manager.
 
     sudo apt install -y npm
 
-> Install body-parser package
-
-    sudo npm install body-parser
+![npm](./images/npm.jpg)
 
 > Create a folder named ‘Books’ 
 
@@ -220,6 +218,10 @@ In the resource-based method, load balancers distribute traffic by analyzing the
 
     npm init
 
+> Install body-parser package
+
+    sudo npm install body-parser
+    
 > Create a new file named server.js
 
     vim server.js
@@ -441,11 +443,16 @@ app.controller('myCtrl', function($scope, $http) {
 
     node server.js
 
+> open TCP port 3300 in your AWS Web Console for your EC2 Instance.
+
+
 > launch a separate Putty or SSH console to test what curl command returns locally. 
 
     curl -s http://localhost:3300
-
->  open TCP port 3300 in your AWS Web Console for your EC2 Instance.
+  
+![site-up](./images/site-up.jpg)
 
 > Now you can access our Book Register web application from the Internet with a browser using Public IP address or Public DNS name.
+
+![site-up2](./images/site-up2.jpg)
 
